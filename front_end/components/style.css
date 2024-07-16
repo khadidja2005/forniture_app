@@ -26,4 +26,7 @@
     justify-content:space-between;
     align-items: center;
   }
+  .class{
+    @apply bg-gray-100 flex flex-col items-start py-10 px-8 w-1/5 ;
+  }
   
