@@ -6,6 +6,10 @@ import Newsletter from "../../components/Newsletter";
 import Articale from "../../components/Articale";
 import Banner from "../../components/Banner";
 import Cards from "../../components/Cards";
+import Features from "../../components/Features";
+import AnimatedElement from "../../components/AnimatedElement";
+import ELements from "../../components/ELements";
+import Animation2 from "../../components/Animation2";
 
 export default function Home() {
   return (
@@ -14,20 +18,34 @@ export default function Home() {
         <div className=" w-[90%] bg-white">
           <Navbar />
           <Sliding_Images />
-          
+          <AnimatedElement>
+            <Features />
+          </AnimatedElement>
+          <ELements />
         </div>
         <div className=" w-[90%] bg-white">
+        <AnimatedElement>
           <Cards/>
+        </AnimatedElement>
+          
         </div>
         <div  className=" bg-gray-100">
-           <Banner/>
+          <AnimatedElement>
+            <Banner/>
+          </AnimatedElement>  
         </div>
         
         <div className=" w-[90%] bg-white">
-          <Articale/>
+          <Animation2>
+            <Articale/>
+          </Animation2>
+          
         </div>
         <div className=" bg-gray-100">
-          <Newsletter/>
+          <AnimatedElement>
+            <Newsletter/>
+          </AnimatedElement>
+          
           <Footer/> 
         </div>
       </div>
