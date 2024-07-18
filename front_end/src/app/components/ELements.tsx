@@ -1,8 +1,8 @@
 import React from 'react'
 import './style.css'
-import bedroom from "../public/images/landing_page/bedroom.png"
-import kitchen from "../public/images/landing_page/kitchen.png"
-import livroom from "../public/images/landing_page/livroom.png"
+import bedroom from "../../../public/images/landing_page/bedroom.png"
+import kitchen from "../../../public/images/landing_page/kitchen.png"
+import livroom from "../../../public/images/landing_page/livroom.png"
 import Image from 'next/image'
 type Props = {}
 

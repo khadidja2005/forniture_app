@@ -1,7 +1,7 @@
 import React from 'react'
-import bdroom from "../public/images/landing_page/bdrm1.jpg"
-import kitchen from "../public/images/landing_page/kit3.jpg"
-import livroom from "../public/images/landing_page/livrm2.jpg"
+import bdroom from "../../../public/images/landing_page/bdrm1.jpg"
+import kitchen from "../../../public/images/landing_page/kit3.jpg"
+import livroom from "../../../public/images/landing_page/livrm2.jpg"
 import Image from 'next/image'
 import './style.css'; 
 type Props = {}

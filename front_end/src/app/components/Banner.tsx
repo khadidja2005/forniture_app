@@ -1,5 +1,5 @@
 import React from 'react'
-import ban from '../public/images/landing_page/livrm6.png'
+import ban from '../../../public/images/landing_page/livrm6.png'
 import Image from 'next/image'
 import './style.css'; 
 type Props = {}

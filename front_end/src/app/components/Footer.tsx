@@ -1,8 +1,8 @@
 import React from 'react'
 import './style.css'; // Import the CSS file
-import insta from "../public/images/icons/Group 77.svg"
-import fb from "../public/images/icons/Group 78.svg"
-import yt from "../public/images/icons/Group 79.svg"
+import insta from "../../../public/images/icons/Group 77.svg"
+import fb from "../../../public/images/icons/Group 78.svg"
+import yt from "../../../public/images/icons/Group 79.svg"
 import Image from 'next/image';
 type Props = {}
 

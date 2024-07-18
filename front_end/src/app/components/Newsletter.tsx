@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import newsletter from '../public/images/landing_page/newsletter.png';
+import newsletter from '../../../public/images/landing_page/newsletter.png';
 
 type Props = {};
 

@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { DB_URI } from './config/keys';
 import { UserSchema } from './mongodb/user.schema';
 import { PostScema } from './mongodb/post.schema';
+import { ArticleSchema } from './mongodb/article.schema';
 @Module({
   imports: [
     MongooseModule.forRoot(DB_URI ),
@@ -13,6 +14,9 @@ import { PostScema } from './mongodb/post.schema';
         ),
         MongooseModule.forFeature(
           [{name : "Post" , schema : PostScema}]
+        ),
+        MongooseModule.forFeature(
+          [{name: "Article" , schema : ArticleSchema}]
         )
   ],
   controllers: [AppController],
