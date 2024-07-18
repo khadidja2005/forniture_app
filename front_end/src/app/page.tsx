@@ -16,7 +16,10 @@ export default function Home() {
     <>
       <div className=" flex justify-center items-center flex-col w-screen overflow-hidden">
         <div className=" w-[90%] bg-white">
-          <Navbar />
+          
+          <AnimatedElement>
+            <Navbar />
+          </AnimatedElement>
           <Sliding_Images />
           <AnimatedElement>
             <Features />

@@ -1,0 +1,1 @@
+export const DB_URI: string = "mongodb+srv://mkbrakta:3V07S0n3jPhdXCUe@cluster0.z7b7v6x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
