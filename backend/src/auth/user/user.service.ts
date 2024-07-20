@@ -1,8 +1,8 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { User, UserDocument } from "src/mongodb/user.schema";
-
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 
@@ -21,13 +21,17 @@ export class UserService {
       return this.UserModel.findOne({email}).exec()
     }
 
-    async valideUser (email:string , password : string):Promise<User | string> {
-        const user = await this.findbyemail(email)
-        if ( user.password == password) {
-          return user 
+    async valideUser(email: string, password: string): Promise<User | null> {
+        const user = await this.findbyemail(email);
+        if (!user) {
+          throw new NotFoundException('User not found');
         }
-        return "password wrong"
-    }
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (isPasswordValid) {
+          return user;
+        }
+        return null;
+      }
 
     
 }
