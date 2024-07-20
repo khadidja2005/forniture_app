@@ -6,6 +6,7 @@ import { DB_URI } from './config/keys';
 import { UserSchema } from './mongodb/user.schema';
 import { PostScema } from './mongodb/post.schema';
 import { ArticleSchema } from './mongodb/article.schema';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     MongooseModule.forRoot(DB_URI ),
@@ -17,7 +18,8 @@ import { ArticleSchema } from './mongodb/article.schema';
         ),
         MongooseModule.forFeature(
           [{name: "Article" , schema : ArticleSchema}]
-        )
+        ),
+        AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
