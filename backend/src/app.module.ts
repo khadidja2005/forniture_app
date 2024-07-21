@@ -7,6 +7,7 @@ import { UserSchema } from './mongodb/user.schema';
 import { PostScema } from './mongodb/post.schema';
 import { ArticleSchema } from './mongodb/article.schema';
 import { AuthModule } from './auth/auth.module';
+import { ReviewsSchema } from './mongodb/review.shema';
 @Module({
   imports: [
     MongooseModule.forRoot(DB_URI ),
@@ -18,6 +19,9 @@ import { AuthModule } from './auth/auth.module';
         ),
         MongooseModule.forFeature(
           [{name: "Article" , schema : ArticleSchema}]
+        ),
+        MongooseModule.forFeature(
+          [{name : "Review" , schema : ReviewsSchema}]
         ),
         AuthModule
   ],

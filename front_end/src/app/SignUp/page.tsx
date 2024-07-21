@@ -50,6 +50,7 @@ const SignUp = (props: Props) => {
        const response = await axios.post("http://localhost:5000/auth/signup" , {email : form.email , password : hashedPassword , name : form.name , username : form.username})
        console.log(response)
        if (response.status === 201) {
+        localStorage.setItem("access_token" , response.data.access_token)
         setsuccess("user registred successfully")
         setTimeout(()=> {
          router.push('/SignIn'); 

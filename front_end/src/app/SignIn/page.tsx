@@ -7,6 +7,7 @@ import { MdOutlineVisibilityOff } from "react-icons/md";
 import { useRouter } from 'next/navigation';
 import bcrypt from 'bcryptjs';
 import axios from 'axios'
+import { jwtDecode } from 'jwt-decode';
 export default function SignIn () {
   const router = useRouter()
   const [visible , setVisible] = useState(true)
@@ -43,6 +44,9 @@ export default function SignIn () {
      console.log(response)
      if (response.data !== "user does not exist") {
       setsuccess("user registred successfully")
+      localStorage.setItem("access_token" , response.data.access_token)
+      // const decoded = jwtDecode(response.data.access_token)
+      // console.log(decoded)
       // setTimeout(()=> {
       //   router.push('/'); 
       // }, 1000)
@@ -96,7 +100,7 @@ export default function SignIn () {
            className= {loading ? ' my-8 bg-zinc-500 text-white mr-20 py-3 px-4 rounded-lg w-[80%]' : "my-8 bg-zinc-900 text-white mr-20 py-3 px-4 rounded-lg w-[80%]"}
             disabled= {loading}
            type='submit'
-           onClick={handelSubmit} >{loading ?"Signing in": "Sign in"}</button>
+           onClick={handelSubmit} >{loading ?"Signing in ...": "Sign in"}</button>
        </div>
       </div>
     </div>
