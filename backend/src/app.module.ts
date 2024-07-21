@@ -8,6 +8,7 @@ import { PostScema } from './mongodb/post.schema';
 import { ArticleSchema } from './mongodb/article.schema';
 import { AuthModule } from './auth/auth.module';
 import { ReviewsSchema } from './mongodb/review.shema';
+import { PostModule } from './post/post.module';
 @Module({
   imports: [
     MongooseModule.forRoot(DB_URI ),
@@ -23,7 +24,8 @@ import { ReviewsSchema } from './mongodb/review.shema';
         MongooseModule.forFeature(
           [{name : "Review" , schema : ReviewsSchema}]
         ),
-        AuthModule
+        AuthModule,
+        PostModule
   ],
   controllers: [AppController],
   providers: [AppService],

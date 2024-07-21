@@ -17,6 +17,9 @@ const Navbar = (props: Props) => {
    const gotoaddproduct =()=> {
     router.push('/AddProduct')
   }
+  const gotohome =()=> {
+    router.push('/')
+  }
    useEffect(() => {
     const storedToken = localStorage.getItem("access_token")
     if (storedToken) {
@@ -27,14 +30,14 @@ const Navbar = (props: Props) => {
   console.log(user) 
   return (
     <>
-      <div className='flex justify-between items-center px-8 py-4'>
+      <div className='flex justify-between items-center px-8 py-4 sticky z-10 shadow-sm'>
         <div>
           <p className=' text-3xl font-bold '>3legant.</p>
         </div>
         <div className='  text-[16px] pr-10'>
           {token ? 
                 <ul className=' flex justify-between items-center gap-6 pr-4 text-zinc-500'>
-                    <li className="hover:text-zinc-950">Home</li>
+                    <li className="hover:text-zinc-950 cursor-pointer" onClick={gotohome} >Home</li>
                     <li className="hover:text-zinc-950">Shop</li>
                     <li className="hover:text-zinc-950">Blog</li>
                     {user && user.role == "admin" && <li className="hover:text-zinc-950 cursor-pointer" onClick={gotoaddproduct}>Add product</li> }
