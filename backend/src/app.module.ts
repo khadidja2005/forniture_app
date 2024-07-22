@@ -9,6 +9,7 @@ import { ArticleSchema } from './mongodb/article.schema';
 import { AuthModule } from './auth/auth.module';
 import { ReviewsSchema } from './mongodb/review.shema';
 import { PostModule } from './post/post.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 @Module({
   imports: [
     MongooseModule.forRoot(DB_URI ),
@@ -25,7 +26,8 @@ import { PostModule } from './post/post.module';
           [{name : "Review" , schema : ReviewsSchema}]
         ),
         AuthModule,
-        PostModule
+        PostModule,
+        CloudinaryModule
   ],
   controllers: [AppController],
   providers: [AppService],
