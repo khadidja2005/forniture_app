@@ -17,6 +17,9 @@ const Navbar = (props: Props) => {
    const gotoaddproduct =()=> {
     router.push('/AddProduct')
   }
+  const gotoshop =()=> {
+    router.push('/Shop')
+  }
   const gotohome =()=> {
     router.push('/')
   }
@@ -38,7 +41,7 @@ const Navbar = (props: Props) => {
           {token ? 
                 <ul className=' flex justify-between items-center gap-6 pr-4 text-zinc-500'>
                     <li className="hover:text-zinc-950 cursor-pointer" onClick={gotohome} >Home</li>
-                    <li className="hover:text-zinc-950">Shop</li>
+                    <li className="hover:text-zinc-950 cursor-pointer" onClick={gotoshop}>Shop</li>
                     <li className="hover:text-zinc-950">Blog</li>
                     {user && user.role == "admin" && <li className="hover:text-zinc-950 cursor-pointer" onClick={gotoaddproduct}>Add product</li> }
                     {user && user.role == "admin" && <li className="hover:text-zinc-950">Add Blog</li> }

@@ -5,7 +5,7 @@ import { Review, ReviewsSchema } from "./review.shema";
 
 @Schema()
 export class Post extends Document{
-    @Prop({required: true})
+    @Prop({required: true })
     name : string;
 
     @Prop()
@@ -26,7 +26,7 @@ export class Post extends Document{
     @Prop({type: [Types.ObjectId], ref: 'User'})
     likes : Types.ObjectId[];
 
-    @Prop({type : ReviewsSchema})
+    @Prop({type : [ReviewsSchema] , default:[]})
     reviews: Review[]
 
 }

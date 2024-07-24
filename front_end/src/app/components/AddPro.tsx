@@ -19,7 +19,7 @@ const AddPro = (props: Props) => {
     });
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files[0];
+        const file = e.target.files?.[0] || null;
         if (file) {
             setImage(file);
             setPreviewImage(URL.createObjectURL(file));
@@ -43,10 +43,10 @@ const AddPro = (props: Props) => {
             formData.append('quantity', form.quantity);
             for (const [key, value] of formData.entries()) {
               console.log(key, value);
-          }
+             }
             try {
                 setLoading(true);
-                console.log(formData)
+                //console.log(formData)
                 const response = await axios.post('http://localhost:5000/post/create', formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
