@@ -17,6 +17,9 @@ export class PostService {
     async getAllPosts():Promise<Post[]> {
         return await this.postModel.find().populate("reviews").exec();
     }
+    async getPostById(id : string):Promise<Post>{
+        return await this.postModel.findById(id).populate("reviews").exec();
+    }
 
 
 

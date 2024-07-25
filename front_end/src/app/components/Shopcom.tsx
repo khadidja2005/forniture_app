@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import shop from "../../../public/images/landing_page/shoppage.png"
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
 type Props = {}
 
@@ -39,7 +40,7 @@ function Shopcom({}: Props) {
     }
     fetchData()
   }, [])
-
+  const router = useRouter()
   useEffect(() => {
     const applyFilter = () => {
       let filtered = products
@@ -80,6 +81,9 @@ function Shopcom({}: Props) {
   const handlePriceChange = (event:ChangeEvent<HTMLSelectElement>) => {
     const selectedPrice = event.target.value
     setPrice(selectedPrice === price ? '' : selectedPrice)
+  }
+  const handelproductClick =(id : string)=> {
+    router.push(`/Shop/${id}`)
   }
 
   return (
@@ -124,7 +128,7 @@ function Shopcom({}: Props) {
         <div className='grid grid-cols-4 gap-8 mb-10'>
           {filteredProducts.map((item) => (
             <div key={item._id} className='bg-white rounded-lg'>
-              <div className='flex justify-center my-2'>
+              <div className='flex justify-center my-2 hover:cursor-pointer' onClick={()=>handelproductClick(item._id)}>
                 <Image src={item.photourl} alt='product' className='w-full h-full' width={200} height={200} />
               </div>
               <h1 className='text-lg font-semibold'>{item.name}</h1>

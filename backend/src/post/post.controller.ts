@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { PostService } from './post.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 
@@ -24,5 +24,16 @@ constructor( private postservice : PostService){}
  async getAllPosts(){
     return this.postservice.getAllPosts()
  }
+@Get(":id")
+async getonePost(@Param("id") id :string) {
+      if (!id) {
+        throw new Error("Id is required")
+      }
+      const post = await this.postservice.getPostById(id)
+      if (!post) {
+        throw new Error("Post not found")
+      }  
+      return post
+}
 
 }
