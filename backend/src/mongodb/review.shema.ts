@@ -6,8 +6,8 @@ import { Document, Types } from "mongoose";
 
 @Schema()
 export class Review extends Document {
-    @Prop({required : true , type: [Types.ObjectId], ref: 'User'})
-    id_user : Types.ObjectId
+    @Prop({required : true ,ref: 'User'})
+    id_user : string
 
     @Prop({required : true})
     comment : string

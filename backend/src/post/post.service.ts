@@ -20,6 +20,27 @@ export class PostService {
     async getPostById(id : string):Promise<Post>{
         return await this.postModel.findById(id).populate("reviews").exec();
     }
+    async quantitysold (quantity: number , post_id :string ) :Promise<string> {
+        const post = await this.postModel.findById(post_id);
+        if (post.quantity < quantity) {
+            return "Not enough quantity";
+        }
+        post.quantity -= quantity;
+        await post.save()
+        return "Quantity updated";
+
+    } 
+    async Updatelike(userid : string , postid :string) :Promise<string> {
+        const post = await this.postModel.findById(postid);
+    if (! post.likes.includes(userid)){
+        post.likes.push(userid)
+        await post.save()
+        return "Liked"
+    }
+    post.likes = post.likes.filter(like => like !== userid)
+    await post.save()
+    return "Unliked"
+    }
 
 
 

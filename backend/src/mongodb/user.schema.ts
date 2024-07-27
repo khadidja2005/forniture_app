@@ -2,6 +2,16 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
 
 
+@Schema()
+class PanierItem {
+  @Prop({ref: 'Post', required: true })
+  postId: string;
+
+  @Prop({ required: true })
+  quantity: number;
+}
+
+const PanierItemSchema = SchemaFactory.createForClass(PanierItem);
 export type UserDocument = User & Document;
 @Schema()
 
@@ -25,8 +35,8 @@ export class User extends Document {
     @Prop()
     photourl : string;
 
-    @Prop({type: [Types.ObjectId], ref: 'Post'})
-    panier : Types.ObjectId[];
+    @Prop({ type: [PanierItemSchema], default: [] })
+    panier: PanierItem[];
 
 }
 export const UserSchema = SchemaFactory.createForClass(User);

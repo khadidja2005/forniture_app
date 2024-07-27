@@ -23,10 +23,10 @@ export class Post extends Document{
     @Prop()
     quantity : number;
 
-    @Prop({type: [Types.ObjectId], ref: 'User'})
-    likes : Types.ObjectId[];
+    @Prop({ ref: 'User'})
+    likes : string[];
 
-    @Prop({type : [ReviewsSchema] , default:[]})
+    @Prop({type : [ReviewsSchema] , default : []})
     reviews: Review[]
 
 }

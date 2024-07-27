@@ -35,5 +35,18 @@ async getonePost(@Param("id") id :string) {
       }  
       return post
 }
+@Post("quantity")
+async quantitysold (
+  @Body("quantity")quantity :number,
+  @Body("post_id") post_id :string
+){
+  return this.postservice.quantitysold(quantity , post_id)
+}
+@Post("like")
+async Updatelike(
+  @Body("userid") userid :string ,
+  @Body("postid") postid :string
+){
+  return this.postservice.Updatelike(userid , postid)}
 
 }
