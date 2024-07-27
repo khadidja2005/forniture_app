@@ -1,7 +1,8 @@
 "use client"
 import axios from 'axios'
+import { jwtDecode } from 'jwt-decode';
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 type Props = {}
@@ -11,6 +12,9 @@ const ProductDetails = (props: Props) => {
   const [id, setId] = useState<string | null>(null)
   const [isLiked, setIsLiked] = useState(false)
   const [quantity, setQuantity] = useState(1)
+  const [loading , setloading] = useState(false)
+  const [error, setError] = useState("")
+  const [success, setSuccess] = useState("")
 
   useEffect(() => {
     const url = window.location.href
@@ -35,14 +39,78 @@ const ProductDetails = (props: Props) => {
   const heartOnclick = ()=> {
     setIsLiked(!isLiked)
   }
+  const addcount =()=> {
+   if(quantity<product?.quantity){
+     setQuantity(quantity+1)
+   }
+   
+  }
+  const removecount =()=> {
+    if(quantity>1){
+      setQuantity(quantity-1)
+    }
+  }
+  const HandelSubmit = async ()=> {
+    const token = localStorage.getItem('access_token')
+    const decode =jwtDecode(token)
+    const userId = decode.sub
+    console.log(userId)
+    const postId = id
+    try {
+      setloading(true)
+      const response = await axios.post('http://localhost:5000/user/addpanier', {
+        userId,
+        postId,
+        quantity
+      })
+      console.log(response.data)
+      try{
+      const response2 = await axios.post('http://localhost:5000/post/quantity', {
+        quantity,
+        post_id : id,
+      }) 
+      console.log(response2.data) 
+      setSuccess("Product added to cart")
+      setError("")
+      setloading(false)
+      } catch(error) {
+        console.log(error)
+        setloading(false)
+        setError("Something went wrong")
+        setSuccess("")
+      }
+
+    } catch (error) {
+      console.log(error)
+      setloading(false)
+      setError("Something went wrong")
+      setSuccess("")
+  }}
+  const handellikes = async ()=> {
+    const token = localStorage.getItem('access_token')
+    const decode =jwtDecode(token)
+    const userId = decode.sub
+    try {
+      const response = await axios.post('http://localhost:5000/post/like', {
+        userid : userId,
+        postid : id
+      })
+      console.log(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <div>
       <div className=' flex justify-evenly items-start my-10'>
         <div className=' w-full relative'>
         <Image src={product?.photourl} alt={"product"} width={450} height={400} />
-        {isLiked ? 
-        <FaHeart className=' absolute bottom-4 right-28' size={40} onClick={heartOnclick} />:
+        <div onClick={handellikes}>
+                  {isLiked ? 
+        <FaHeart className=' absolute bottom-4 right-28' size={40} onClick={heartOnclick}  />:
         <FaRegHeart className='absolute bottom-4 right-28' size={40}  onClick={heartOnclick} />}
+        </div>
+
         {/* <FaHeart /> */}
         </div>
         <div className=' w-full mx-10' >
@@ -60,22 +128,40 @@ const ProductDetails = (props: Props) => {
               <p className=' mx-2 text-black font-bold'> {product?.quantity}</p>
             </div>
             <div className=' mt-20 w-fit'>
-        <div className='flex  bg-slate-300'>
-                <div className='py-2 px-4'>
+        <div className='flex  bg-slate-300 rounded-md'>
+                <div className='py-2 px-4 border-r border-gray-400 cursor-pointer' onClick={addcount}>
                     +
                 </div>
                <div className='py-2 px-4'>
                 {quantity}
                </div>
-               <div className='py-2 px-4'>
+               <div className='py-2 px-4 border-l border-gray-400 cursor-pointer' onClick={removecount}>
                 -
                </div>
             </div> 
             </div>
-
-            <button className=' bg-slate-800 text-white px-4 py-4 rounded-lg'>Add to cart</button> 
+            {error && <p className='text-red-500'>{error}</p>}
+            {success && <p className='text-green-500'>{success}</p>}
+            <button className={loading ? "bg-slate-400 text-white px-4 py-4 rounded-lg": "bg-slate-800 text-white px-4 py-4 rounded-lg"} onClick={HandelSubmit}>{loading ? "adding to cart" :"Add to cart"}</button> 
 
           </div>
+        </div>
+      </div>
+      <div className=' flex flex-col items-start justify-center w-full'>
+        <p className=' text-3xl py-4'>Customer Reviews</p>
+        <div className=' w-full flex flex-row my-8'>
+          <input type="text" placeholder='Add a review' className=' w-full px-4 py-2 border border-zinc-900 focus:outline-none focus:shadow-none  '  />
+          <button className=' px-4 py-2 bg-zinc-900 text-white rounded-r-md border border-zinc-900 '>Publish</button>
+        </div>
+        <div>
+          {product?.reviews?.map((review , index) => {
+            return (
+              <div key={index} className='flex justify-between items-center'>
+                <p>{review.user_id}</p>
+                <p>{review.comment}</p>
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>

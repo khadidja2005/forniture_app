@@ -35,7 +35,7 @@ const Navbar = (props: Props) => {
     <>
       <div className='flex justify-between items-center px-8 py-4 sticky z-10 shadow-sm'>
         <div>
-          <p className=' text-3xl font-bold '>3legant.</p>
+          <p className=' text-3xl font-bold cursor-pointer'>3legant.</p>
         </div>
         <div className='  text-[16px] pr-10'>
           {token ? 
