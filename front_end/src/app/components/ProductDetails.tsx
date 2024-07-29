@@ -2,7 +2,7 @@
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode';
 import Image from 'next/image'
-import React, { use, useEffect, useState } from 'react'
+import React, { ChangeEvent, FormEvent, use, useEffect, useState } from 'react'
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 type Props = {}
@@ -15,13 +15,17 @@ const ProductDetails = (props: Props) => {
   const [loading , setloading] = useState(false)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
-
+  const [comment, setComment] = useState("")
+  const [user , setUser] = useState(
+    {
+      username : ""
+    }
+  )
   useEffect(() => {
     const url = window.location.href
     const idFromUrl = url.split('/').pop() || null
     setId(idFromUrl)
   }, [])
-
   useEffect(() => {
     const fetchData = async () => {
       if (id) {
@@ -100,6 +104,22 @@ const ProductDetails = (props: Props) => {
       console.log(error)
     }
   }
+  const submitReview = async(e : FormEvent<HTMLFormElement>)=> {
+    const token = localStorage.getItem('access_token')
+    const decode =jwtDecode(token)
+    const userId = decode.sub
+    e.preventDefault()
+    try {
+      const response = await axios.post("http://localhost:5000/post/addreview", {
+        id_post : id ,
+        id_user : userId,
+        comment ,
+      })
+      console.log(response.data)
+    }catch(error){
+      console.log(error)
+    }
+  }
   return (
     <div>
       <div className=' flex justify-evenly items-start my-10'>
@@ -149,16 +169,31 @@ const ProductDetails = (props: Props) => {
       </div>
       <div className=' flex flex-col items-start justify-center w-full'>
         <p className=' text-3xl py-4'>Customer Reviews</p>
-        <div className=' w-full flex flex-row my-8'>
-          <input type="text" placeholder='Add a review' className=' w-full px-4 py-2 border border-zinc-900 focus:outline-none focus:shadow-none  '  />
-          <button className=' px-4 py-2 bg-zinc-900 text-white rounded-r-md border border-zinc-900 '>Publish</button>
-        </div>
-        <div>
+        <form className=' w-full flex flex-row my-8' onSubmit={submitReview}>
+          <input 
+             type="text" 
+             placeholder='Add a review' 
+             className=' w-full px-4 py-2 border border-zinc-900 focus:outline-none focus:shadow-none  '
+             name='comment'
+             value={comment}
+             onChange={(e)=> setComment(e.target.value)}  />
+          <button type='submit' className=' px-4 py-2 bg-zinc-900 text-white rounded-r-md border border-zinc-900 '>Publish</button>
+        </form>
+        <div className=' mb-10'>
+          <p>{product?.reviews?.length} Reviews</p>
           {product?.reviews?.map((review , index) => {
             return (
-              <div key={index} className='flex justify-between items-center'>
-                <p>{review.user_id}</p>
-                <p>{review.comment}</p>
+              <div key={index} className='flex justify-start items-start m-4 py-4'>
+                <div className=' mx-4 w-[5%]'>
+                <Image src={review.id_user.photourl} alt={"user"} width={50} height={50} className=' rounded-2xl' />
+                </div>
+                <div className=' w-full'>
+                  <p className=' font-bold text-lg'>{review.id_user.username}</p>
+                  <p>{review.comment}</p>
+                </div>
+                
+
+                
               </div>
             )
           })}

@@ -23,6 +23,12 @@ const Navbar = (props: Props) => {
   const gotohome =()=> {
     router.push('/')
   }
+  const gotArticle =()=> {
+    router.push('/Articles')
+  }
+  const gotoAddBlog =()=> {
+    router.push('/AddBlog')
+  }
    useEffect(() => {
     const storedToken = localStorage.getItem("access_token")
     if (storedToken) {
@@ -35,16 +41,16 @@ const Navbar = (props: Props) => {
     <>
       <div className='flex justify-between items-center px-8 py-4 sticky z-10 shadow-sm'>
         <div>
-          <p className=' text-3xl font-bold cursor-pointer'>3legant.</p>
+          <p className=' text-3xl font-bold cursor-pointer' onClick={gotohome}>3legant.</p>
         </div>
         <div className='  text-[16px] pr-10'>
           {token ? 
                 <ul className=' flex justify-between items-center gap-6 pr-4 text-zinc-500'>
                     <li className="hover:text-zinc-950 cursor-pointer" onClick={gotohome} >Home</li>
                     <li className="hover:text-zinc-950 cursor-pointer" onClick={gotoshop}>Shop</li>
-                    <li className="hover:text-zinc-950">Blog</li>
+                    <li className="hover:text-zinc-950 cursor-pointer" onClick={gotArticle}>Blog</li>
                     {user && user.role == "admin" && <li className="hover:text-zinc-950 cursor-pointer" onClick={gotoaddproduct}>Add product</li> }
-                    {user && user.role == "admin" && <li className="hover:text-zinc-950">Add Blog</li> }
+                    {user && user.role == "admin" && <li className="hover:text-zinc-950 cursor-pointer" onClick={gotoAddBlog}>Add Blog</li> }
                     <div className='flex ml-10 justify-center items-center gap-6 '>
                       <CiShoppingCart className=' size-8 text-slate-900 font-semibold' />
                       {user && <div className=' flex justify-center items-center border border-slate-500 rounded-md px-2 py-1'>
@@ -58,7 +64,7 @@ const Navbar = (props: Props) => {
                   </ul>
           : 
           <ul className=' flex justify-between items-center gap-6 pr-4 text-zinc-500'>
-          <li className="hover:text-zinc-950">Home</li>
+          <li className="hover:text-zinc-950 cursor-pointer" onClick={gotohome}>Home</li>
           <li className="hover:text-zinc-950">About Us</li>
           <li className="hover:text-zinc-950">Contact Us</li>
           <li className="hover:text-zinc-950">NewsLetter</li>        

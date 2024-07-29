@@ -11,6 +11,7 @@ import { ReviewsSchema } from './mongodb/review.shema';
 import { PostModule } from './post/post.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { UserModule } from './user/user.module';
+import { ArticlesModule } from './articles/articles.module';
 @Module({
   imports: [
     MongooseModule.forRoot(DB_URI ),
@@ -29,7 +30,8 @@ import { UserModule } from './user/user.module';
         AuthModule,
         PostModule,
         CloudinaryModule,
-        UserModule
+        UserModule,
+        ArticlesModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -49,4 +49,14 @@ async Updatelike(
 ){
   return this.postservice.Updatelike(userid , postid)}
 
+
+@Post("addreview")
+async addReview (
+  @Body("id_post") id_post :string,
+  @Body("id_user") id_user :string,
+  @Body("comment") comment :string
+){
+  return this.postservice.addReview(id_post , id_user , comment)
+}
+
 }
