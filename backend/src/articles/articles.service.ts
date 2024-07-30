@@ -17,5 +17,8 @@ export class ArticlesService {
     async getAllArticles():Promise<Article[]> {
         return await this.articleModel.find().exec();
     }
+    async getArticleById(id : string):Promise<Article>{
+        return await this.articleModel.findById(id).exec();
+    }
     
 }

@@ -3,6 +3,7 @@ import axios from 'axios'
 import Image from 'next/image';
 import React, {  useEffect, useState } from 'react'
 import Blog from "../../../public/images/landing_page/Blogpage.png"
+import { useRouter } from 'next/navigation';
 type Props = {}
 interface HomeDesign {
     content: string;
@@ -12,6 +13,7 @@ interface HomeDesign {
     _id: string;
   }
 const BlogCom = (props: Props) => {
+  const router = useRouter()
 const [articles, setArticles] = useState<HomeDesign[]>([])
     useEffect(() => {
      const fetchdata = async()=> {
@@ -24,6 +26,9 @@ const [articles, setArticles] = useState<HomeDesign[]>([])
      }
     }
      fetchdata()} , [])
+     const ClickonImage = (id : string) => {
+       router.push(`/Articles/${id}`)
+     }
   return (
     <div>
 <div className='relative'>
@@ -41,7 +46,7 @@ const [articles, setArticles] = useState<HomeDesign[]>([])
             articles.map((article) => {
                 return (
                     <div key={article._id} className="bg-white p-4">
-                        <Image src={article.photourl} alt="" className=" w-full object-cover" width={200} height={200} />
+                        <Image src={article.photourl} alt="" onClick={()=>ClickonImage(article._id)} className=" cursor-pointer w-full object-cover" width={200} height={200} />
                         <h1 className="text-lg font-bold mt-2">{article.title}</h1>
                     </div>
                 )

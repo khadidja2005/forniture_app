@@ -54,6 +54,21 @@ const ProductDetails = (props: Props) => {
       setQuantity(quantity-1)
     }
   }
+ useEffect(()=> {
+    const likedornot =()=> {
+    const token = localStorage.getItem('access_token')
+    const decode =jwtDecode(token)
+    const userId = decode.sub
+    if(product?.likes?.includes(userId) ){
+      setIsLiked(true)
+    }else{
+      setIsLiked(false)
+    }
+  }
+    likedornot()
+ }, [product])
+
+
   const HandelSubmit = async ()=> {
     const token = localStorage.getItem('access_token')
     const decode =jwtDecode(token)
@@ -162,7 +177,7 @@ const ProductDetails = (props: Props) => {
             </div>
             {error && <p className='text-red-500'>{error}</p>}
             {success && <p className='text-green-500'>{success}</p>}
-            <button className={loading ? "bg-slate-400 text-white px-4 py-4 rounded-lg": "bg-slate-800 text-white px-4 py-4 rounded-lg"} onClick={HandelSubmit}>{loading ? "adding to cart" :"Add to cart"}</button> 
+            <button className={loading ? "bg-slate-400 text-white px-4 py-4 rounded-lg": "bg-slate-800 text-white px-4 py-4 rounded-lg"} onClick={HandelSubmit}>{loading ? "adding to panier" :"Add to panier"}</button> 
 
           </div>
         </div>

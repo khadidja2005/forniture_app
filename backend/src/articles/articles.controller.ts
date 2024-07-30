@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ArticlesService } from './articles.service';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -21,5 +21,16 @@ export class ArticlesController {
     @Get("all")
     async getAllArticles(){
         return this.articleservice.getAllArticles()
+    }
+    @Get(":id")
+    async getoneArticle(@Param("id") id :string) {
+        if (!id) {
+            throw new Error("Id is required")
+        }
+        const article = await this.articleservice.getArticleById(id)
+        if (!article) {
+            throw new Error("Article not found")
+        }
+        return article
     }
 }
