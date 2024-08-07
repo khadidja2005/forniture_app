@@ -100,12 +100,13 @@ const Navbar = (props: Props) => {
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: '100%', opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className=' fixed right-0  mt-56 w-64 bg-white text-black shadow-lg rounded-lg z-20 flex flex-col px-4 py-4'>
-                  <div className='  mt-10 py-6 px-4 flex justify-between items-center'>
+                className=' fixed right-0 mt-60  w-64 bg-white text-black shadow-lg rounded-lg z-20 flex flex-col px-4 py-4'>
+                  <div className=' fixed top-2 w-full  py-8 px-8 flex justify-between items-center'>
                     <p className=' font-bold'>Your Panier</p>
                     <IoIosClose size={40} onClick={handleClick} />
                   </div>
-                  {panier.length === 0 ? (
+                  <div className='mt-16 overflow-y-auto max-h-[300px]'>
+                    {panier.length === 0 ? (
                     <p className='text-sm'>Your cart is empty.</p>
                   ) : ( 
                     <div>
@@ -123,12 +124,14 @@ const Navbar = (props: Props) => {
                       ))}
                     </div>
                   )}
+                  </div>
+
                 </motion.div>
               )}
               </AnimatePresence>
               {user && (
                 <div className='flex justify-center items-center border border-slate-500 rounded-md px-2 py-1 cursor-pointer' onClick={gotoProfile}>
-                  <Image src={user.photourl} alt='profile' width={40} height={40} className='rounded-2xl border border-slate-900' />
+                  <Image src={user.photourl} alt='profile' width={40} height={40} className='rounded-2xl border border-slate-900 object-cover w-12 h-12' />
                   <div className='mx-2 text-slate-900 text-sm'>
                     <p>{user.username}</p>
                     <p>{user.role}</p>

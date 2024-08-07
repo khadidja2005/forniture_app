@@ -1,5 +1,7 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { UserService } from './user.service';
+import { Multer } from 'multer';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('user')
 export class UserController {
@@ -23,5 +25,29 @@ export class UserController {
         @Param("id") id : string
     ){
         return this.userservice.getpanier(id)
+    }
+    @Post("update")
+    @UseInterceptors(FileInterceptor("file"))
+    @UsePipes(new ValidationPipe())
+    async updatepro (
+        @Body("id") id : string,
+        @Body("username") username : string,
+        @Body("name") name : string,
+        @UploadedFile("file") file?: Express.Multer.File
+    ) {
+        return this.userservice.updateImage(id , username , name , file)
+    }
+
+    @Get("all")
+    async getAllusers(){
+        return this.userservice.getAllusers()
+    }
+
+    @Post("updaterole")
+    async updaterole(
+        @Body("id") id : string,
+        @Body("role") role : string
+    ){
+        return this.userservice.updaterole(id , role)
     }
 }
