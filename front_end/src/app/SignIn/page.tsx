@@ -47,9 +47,9 @@ export default function SignIn () {
       localStorage.setItem("access_token" , response.data.access_token)
       // const decoded = jwtDecode(response.data.access_token)
       // console.log(decoded)
-      // setTimeout(()=> {
-      //   router.push('/'); 
-      // }, 1000)
+       setTimeout(()=> {
+         router.push('/'); 
+       }, 1000)
   } else {
       seterror("Something went wrong. Please try again.");
       setsuccess(null)

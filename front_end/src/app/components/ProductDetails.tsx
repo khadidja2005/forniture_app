@@ -200,7 +200,7 @@ const ProductDetails = (props: Props) => {
             return (
               <div key={index} className='flex justify-start items-start m-4 py-4'>
                 <div className=' mx-4 w-[5%]'>
-                <Image src={review.id_user.photourl} alt={"user"} width={50} height={50} className=' rounded-2xl' />
+                <Image src={review.id_user.photourl} alt={"user"} width={50} height={50} className=' w-12 h-12 rounded-2xl' />
                 </div>
                 <div className=' w-full'>
                   <p className=' font-bold text-lg'>{review.id_user.username}</p>

@@ -22,7 +22,7 @@ export class AuthService {
     async login (user:any){
     const payload = { email: user.email, sub: user._id , username : user.username , name : user.name , photourl : user.photourl , panier : user.panier , role : user.role };
     return {
-        access_token : this.jwtservice.sign(payload)
+        access_token : this.jwtservice.sign(payload , { expiresIn: '1h' })
     }
     }
 }

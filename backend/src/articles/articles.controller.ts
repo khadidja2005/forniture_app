@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UploadedFile, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ArticlesService } from './articles.service';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -6,7 +6,6 @@ import { FileInterceptor } from '@nestjs/platform-express';
 @Controller('articles')
 export class ArticlesController {
     constructor( private articleservice : ArticlesService){}
-
     @Post("create")
     @UseInterceptors(FileInterceptor("file"))
     @UsePipes(new ValidationPipe())

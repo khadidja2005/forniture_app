@@ -1,7 +1,9 @@
-import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UploadedFile, UseGuards, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Multer } from 'multer';
 import { FileInterceptor } from '@nestjs/platform-express';
+
+
 
 @Controller('user')
 export class UserController {
@@ -37,6 +39,7 @@ export class UserController {
     ) {
         return this.userservice.updateImage(id , username , name , file)
     }
+    
 
     @Get("all")
     async getAllusers(){

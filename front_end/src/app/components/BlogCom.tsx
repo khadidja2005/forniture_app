@@ -18,7 +18,13 @@ const [articles, setArticles] = useState<HomeDesign[]>([])
     useEffect(() => {
      const fetchdata = async()=> {
         try {
-            const response = await axios.get("http://localhost:5000/articles/all")
+            const response = await axios.get("http://localhost:5000/articles/all" ,
+              {
+                headers: {
+                  'Authorization': `Bearer ${localStorage.getItem("access_token") }`// Replace 'your-jwt-token' with the actual token
+                }
+              }
+            )
             console.log(response.data)
             setArticles(response.data)
         }catch (error) {

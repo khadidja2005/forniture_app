@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { PostModule } from 'src/post/post.module';
 import { PostScema } from 'src/mongodb/post.schema';
 import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports : [
@@ -15,7 +16,11 @@ import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
     MongooseModule.forFeature(
       [{name : "Post" , schema : PostScema}]
     ) ,
-    CloudinaryModule
+    CloudinaryModule ,
+    JwtModule.register({
+      secret:"khadidja",
+      signOptions: { expiresIn: '60m' }
+    })
   ],
   providers: [UserService],
   controllers: [UserController]

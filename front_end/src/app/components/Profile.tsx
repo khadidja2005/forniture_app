@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React, { ChangeEvent, useEffect, useState } from 'react'
 
 type Props = {}
@@ -27,12 +28,14 @@ type User = {
   };
   
 const ProfileCom = (props: Props) => {
+  const router = useRouter()
   const [image, setImage] = useState<File | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [user , setUser] = useState<User | null>()
   const [error , setError] = useState<string | null>(null)
   const [success , setSuccess] = useState<string | null>(null)
   const [users , setUsers] = useState<User[]>([])
+  const [loading , setLoading] = useState<boolean>(false)
 
     useEffect(()=> {
         const storedToken = localStorage.getItem("access_token");
@@ -74,6 +77,7 @@ const ProfileCom = (props: Props) => {
   formdata.append("file" ,image)
    }
    try {
+    setLoading(true)
     const response = await axios.post("http://localhost:5000/user/update" , formdata ,
       {
         headers: {
@@ -84,6 +88,8 @@ const ProfileCom = (props: Props) => {
     )
     setSuccess("profile updated")
     console.log("user updated")
+    setLoading(false)
+    localStorage.setItem("access_token" , response.data.token)
    } catch (error) {
     console.log(error)
     setError("failed to update profile")
@@ -96,7 +102,13 @@ const ProfileCom = (props: Props) => {
   const handelonRoleChange = async (id : string , role : string) => {
     try {
       console.log(id , role)
+
       const response = await axios.post("http://localhost:5000/user/updaterole" , {id , role})
+      if (id === user?.sub){
+        localStorage.removeItem("access_token")
+        setTimeout(()=> { router.push("/")} , 1000)
+
+      }
       console.log(response.data)
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
