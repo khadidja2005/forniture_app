@@ -8,7 +8,7 @@ type Props = {}
 
 const Footer = (props: Props) => {
   return (
-    <div className=' h-2/5  bg-neutral-900 text-white px-32 py-10 w-screen'>
+    <div className=' h-2/5  bg-neutral-900 text-white sm:px-32 px-10 py-10 w-screen'>
       <div className=' between'>
         <div className='between gap-6' >
           <div className=' font-medium text-2xl'>
@@ -29,10 +29,13 @@ const Footer = (props: Props) => {
       <div className='between mt-16  border-t pt-8 border-gray-400 '>
         <div className=' between gap-6'>
          <p className='text-sm font-light'>Copyright © 2023 3legant. All rights reserved</p>
-         <p className=' text-xs font-bold'>Privacy Policy</p>
+         <div className='flex justify-between items-center gap-4 sm:my-0 my-4' >
+          <p className=' text-xs font-bold'>Privacy Policy</p>
          <p className=' text-xs font-bold'>Terms of Use</p>
+         </div>
+
         </div>
-        <div className='between gap-3'>
+        <div className='flex justify-between items-center gap-3 sm:my-0 my-4'>
         <Image src={insta} alt='insta' />
         <Image src={fb} alt='fb'/>
         <Image src={yt} alt='yt'/>

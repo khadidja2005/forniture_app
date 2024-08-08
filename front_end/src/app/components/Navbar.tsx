@@ -79,11 +79,11 @@ const Navbar = (props: Props) => {
   }, [user]);
 
   return (
-    <div className='flex justify-between items-center px-8 py-4 sticky z-10 shadow-sm'>
-      <div>
+    <div className='flex sm:justify-between justify-center items-center sm:px-8 px-2 py-4 sticky z-10 shadow-sm'>
+      <div className=' hidden md:block'>
         <p className='text-3xl font-bold cursor-pointer' onClick={gotohome}>3legant.</p>
       </div>
-      <div className='text-[16px] pr-10'>
+      <div className='sm:text-[16px] text-xs pr-10'>
         {token ? (
           <ul className='flex justify-between items-center gap-6 pr-4 text-zinc-500'>
             <li className="hover:text-zinc-950 cursor-pointer" onClick={gotohome}>Home</li>
@@ -141,11 +141,11 @@ const Navbar = (props: Props) => {
             </div>
           </ul>
         ) : (
-          <ul className='flex justify-between items-center gap-6 pr-4 text-zinc-500'>
+          <ul className='flex justify-between items-center sm:gap-6 gap-4 pr-4 text-zinc-500'>
             <li className="hover:text-zinc-950 cursor-pointer" onClick={gotohome}>Home</li>
-            <li className="hover:text-zinc-950">About Us</li>
-            <li className="hover:text-zinc-950">Contact Us</li>
-            <li className="hover:text-zinc-950">NewsLetter</li>
+            <li className="hover:text-zinc-950 ">About Us</li>
+            <li className="hover:text-zinc-950 ">Contact Us</li>
+            <li className="hover:text-zinc-950 hidden sm:block">NewsLetter</li>
             <button className='border-zinc-400 border text-gray-700 px-4 py-2 rounded-md hover:bg-slate-500 hover:text-white' onClick={gotosignin}>Sign In</button>
           </ul>
         )}

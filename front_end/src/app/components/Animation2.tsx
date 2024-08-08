@@ -21,7 +21,7 @@ const Animation2: React.FC<AnimatedElementProps> = ({ children, className }) => 
       initial={{ opacity: 0.5, x: 200 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 1.2 }}
-      className={className}
+      className={`${className} hidden md:block`} 
     >
       {children}
     </motion.div>

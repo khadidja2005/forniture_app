@@ -9,7 +9,7 @@ type Props = {}
 const Cards = (props: Props) => {
   return (
     <div>
-        <div className=' between  my-20'>
+        <div className=' lg:flex lg:justify-between lg:items-center sm:gap-8 grid  mx-6  sm:grid-cols-2 grid-cols-1 gap-4 my-20'>
             <div className=' class'>
             <CiDeliveryTruck size={40} />
             <p className=' text-md font-medium mt-4 mb-2'>Free Shipping</p>

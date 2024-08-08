@@ -6,13 +6,13 @@ type Props = {}
 
 const Banner = (props: Props) => {
   return (
-    <div className=' between w-full h-full'>
-        <div className=' w-2/3'>
-         <Image src={ban} alt='banner'/>
+    <div className='flex md:justify-between md:flex-row items-center flex-col w-full h-full'>
+        <div className=' w-full'>
+         <Image src={ban} alt='banner' className=' h-full w-full'/>
         </div >
-        <div className=' mr-40 ml-14 flex flex-col gap-4'>
-        <p className=' text-xl text-blue-500'>SALE UP TO 35% OFF</p>
-        <p className=' text-3xl font-semibold'>HUNDREDS of New lower prices!</p>
+        <div className=' md:mr-40 md:ml-14 mx-6 flex flex-col gap-8 my-10'>
+        <p className=' sm:text-xl text-lg text-blue-500'>SALE UP TO 35% OFF</p>
+        <p className=' sm:text-3xl text-2xl font-semibold'>HUNDREDS of New lower prices!</p>
         <p >It’s more affordable than ever to give every room in your home a stylish makeover</p>
         </div>
     </div>

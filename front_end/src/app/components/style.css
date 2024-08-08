@@ -22,11 +22,9 @@
     align-items: center;
   }
   .between {
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
+   @apply flex sm:justify-between justify-center sm:flex-row flex-col items-center
   }
   .class{
-    @apply bg-gray-100 flex flex-col items-start py-10 px-8 w-1/5 ;
+    @apply bg-gray-100 flex flex-col sm:items-start items-center py-10 px-8 lg:w-1/5 w-full   ;
   }
   

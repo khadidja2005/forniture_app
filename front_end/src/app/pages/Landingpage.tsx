@@ -40,9 +40,14 @@ export default function Landing() {
         </div>
         
         <div className=" w-[90%] bg-white">
-          <Animation2>
+          <div className=" md:block hidden">
+            <Animation2>
             <Articale/>
           </Animation2>
+          </div>
+          <div className=" md:hidden block">
+          <Articale/>
+          </div>
           
         </div>
         <div className=" bg-gray-100">

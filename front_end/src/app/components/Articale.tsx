@@ -10,7 +10,7 @@ const Articale = (props: Props) => {
   return (
     <div className=' py-10 my-8 '>
         <p className=' text-3xl py-4 font-semibold'>Articles</p>
-        <div className='between w-full h-full gap-10 my-4'>
+        <div className=' sm:justify-between sm:flex-row justify-center flex flex-col w-full h-full gap-10 my-4 text-xl'>
             <div>
                 <Image src={bdroom} alt='bdroom' className=' w-full'/>
                 <p className=' py-4'>Decor your bedroom</p>
