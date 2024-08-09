@@ -66,7 +66,7 @@ const AddPro = (props: Props) => {
     return (
         <div className='w-screen'>
             <form onSubmit={handleSubmit}>
-                <div className='flex flex-row justify-center items-center'>
+                <div className='flex md:flex-row flex-col justify-center items-center'>
                     {previewImage ?
                         <div className='relative w-full flex justify-center items-center flex-col py-32 border-dashed border border-slate-900'>
                             <Image src={previewImage} alt='image' className='w-full h-full' width={300} height={600} />
@@ -79,7 +79,7 @@ const AddPro = (props: Props) => {
                         </div>
                     }
 
-                    <div className='flex flex-col justify-center w-[80%] mr-20 px-10'>
+                    <div className='flex flex-col justify-center sm:w-[80%] w-full sm:mr-20 sm:px-10 px-2'>
                         <p className='my-6 text-2xl'>Add Product</p>
                         <input
                             type='text'

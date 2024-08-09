@@ -137,18 +137,18 @@ const ProductDetails = (props: Props) => {
   }
   return (
     <div>
-      <div className=' flex justify-evenly items-start my-10'>
+      <div className=' flex sm:justify-evenly sm:flex-row gap-8 flex-col items-start my-10'>
         <div className=' w-full relative'>
         <Image src={product?.photourl} alt={"product"} width={450} height={400} />
         <div onClick={handellikes}>
                   {isLiked ? 
-        <FaHeart className=' absolute bottom-4 right-28' size={40} onClick={heartOnclick}  />:
-        <FaRegHeart className='absolute bottom-4 right-28' size={40}  onClick={heartOnclick} />}
+        <FaHeart className=' absolute bottom-4 right-28 sm:size-10 size-5'  onClick={heartOnclick}  />:
+        <FaRegHeart className='absolute bottom-4 right-28 sm:size-10 size-5'   onClick={heartOnclick} />}
         </div>
 
         {/* <FaHeart /> */}
         </div>
-        <div className=' w-full mx-10' >
+        <div className=' w-full sm:mx-10 mx-2' >
           <div className=' w-full flex flex-col gap-6'>
             <p className=' text-xl text-gray-700 font-semibold py-2 px-4 bg-gray-200 w-fit border border-slate-800 rounded-lg'>{product?.category}</p>
             <p className=' text-3xl font-semibold'>{product?.name}</p>
@@ -177,7 +177,7 @@ const ProductDetails = (props: Props) => {
             </div>
             {error && <p className='text-red-500'>{error}</p>}
             {success && <p className='text-green-500'>{success}</p>}
-            <button className={loading ? "bg-slate-400 text-white px-4 py-4 rounded-lg": "bg-slate-800 text-white px-4 py-4 rounded-lg"} onClick={HandelSubmit}>{loading ? "adding to panier" :"Add to panier"}</button> 
+            <button className={loading ? "bg-slate-400 text-white sm:px-4 sm:py-2 px-2 py-2 rounded-lg mx-4":  " mx-4 bg-slate-800 text-white sm:px-4 sm:py-2 px-2 py-2 rounded-lg"} onClick={HandelSubmit}>{loading ? "adding to panier" :"Add to panier"}</button> 
 
           </div>
         </div>
@@ -198,8 +198,8 @@ const ProductDetails = (props: Props) => {
           <p>{product?.reviews?.length} Reviews</p>
           {product?.reviews?.map((review , index) => {
             return (
-              <div key={index} className='flex justify-start items-start m-4 py-4'>
-                <div className=' mx-4 w-[5%]'>
+              <div key={index} className='flex justify-start items-start sm:m-4 py-4'>
+                <div className=' mx-4 sm:w-[5%] '>
                 <Image src={review.id_user.photourl} alt={"user"} width={50} height={50} className=' w-12 h-12 rounded-2xl' />
                 </div>
                 <div className=' w-full'>

@@ -83,15 +83,15 @@ const Navbar = (props: Props) => {
       <div className=' hidden md:block'>
         <p className='text-3xl font-bold cursor-pointer' onClick={gotohome}>3legant.</p>
       </div>
-      <div className='sm:text-[16px] text-xs pr-10'>
+      <div className='sm:text-[16px] text-xs sm:pr-10'>
         {token ? (
-          <ul className='flex justify-between items-center gap-6 pr-4 text-zinc-500'>
+          <ul className='flex justify-between items-center md:gap-6 gap-3 sm:gap-4 pr-4 text-zinc-500'>
             <li className="hover:text-zinc-950 cursor-pointer" onClick={gotohome}>Home</li>
             <li className="hover:text-zinc-950 cursor-pointer" onClick={gotoshop}>Shop</li>
             <li className="hover:text-zinc-950 cursor-pointer" onClick={gotArticle}>Blog</li>
             {user && user.role === "admin" && <li className="hover:text-zinc-950 cursor-pointer" onClick={gotoaddproduct}>Add product</li>}
             {user && user.role === "admin" && <li className="hover:text-zinc-950 cursor-pointer" onClick={gotoAddBlog}>Add Blog</li>}
-            <div className='flex ml-10 justify-center items-center gap-6 '>
+            <div className='flex md:ml-10  justify-center items-center md:gap-6 gap-4 '>
               <CiShoppingCart className='size-8 text-slate-900 font-semibold' onClick={handleClick} />
               <AnimatePresence>
               {visible && (
@@ -132,7 +132,7 @@ const Navbar = (props: Props) => {
               {user && (
                 <div className='flex justify-center items-center border border-slate-500 rounded-md px-2 py-1 cursor-pointer' onClick={gotoProfile}>
                   <Image src={user.photourl} alt='profile' width={40} height={40} className='rounded-2xl border border-slate-900 object-cover w-12 h-12' />
-                  <div className='mx-2 text-slate-900 text-sm'>
+                  <div className='mx-2 text-slate-900 text-sm hidden md:block'>
                     <p>{user.username}</p>
                     <p>{user.role}</p>
                   </div>

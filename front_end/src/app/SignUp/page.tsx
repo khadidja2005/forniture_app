@@ -67,12 +67,12 @@ const SignUp = (props: Props) => {
     } 
   return (
     <div className=' h-screen w-screen'>
-    <div className=' flex flex-row justify-center items-center '>
+    <div className=' flex sm:flex-row flex-col justify-center items-center '>
     <div className=' relative w-full'>
           <p className=' text-3xl absolute font-semibold left-1/4 my-4 cursor-pointer' onClick={gotohome}>3legant.</p>
-          <Image src={livroom} alt='livroom' className='h-screen w-4/5' />
+          <Image src={livroom} alt='livroom' className='sm:h-screen  sm:w-4/5 w-full' />
     </div>
-     <div className=' flex flex-col justify-center w-[100%] mr-20 px-10'>
+     <div className=' flex flex-col justify-center w-[100%] sm:mr-20 mx-20 px-10'>
      <p className=' text-3xl my-5 font-semibold'>Sign Up</p>
      <p className=' text-gray-500'>Already have an account? <span onClick={gotosignin} className=' text-green-500 font-semibold cursor-pointer'>Sign In</span></p>
      <input 
@@ -105,14 +105,15 @@ const SignUp = (props: Props) => {
         value={form.password}
         name='password'
         onChange={handelChange} />
-        {error && <p className=' text-red-600 my-4'>{error}</p>}
-        {success && <p className=' text-green-600 my-4'>{success}</p>}
+
       {visible?<MdOutlineVisibility className=' absolute right-4 transform bottom-1/2 translate-y-1/2 size-5 text-gray-500 z-10' onClick={togglepassword} /> :
       <MdOutlineVisibilityOff className=' absolute right-4 transform bottom-1/2 translate-y-1/2 size-5 text-gray-500 z-10' onClick={togglepassword} />  }
       
      </div>
       
       <button onClick={handelSubmit} type='submit' className= {loading ? ' my-8 bg-zinc-500 text-white mr-20 py-3 px-4 rounded-lg w-[80%]' : "my-8 bg-zinc-900 text-white mr-20 py-3 px-4 rounded-lg w-[80%]"}  disabled= {loading}>{loading ?"Signing UP .." :"Sign Up"}</button>
+      {error && <p className=' text-red-600 my-4'>{error}</p>}
+      {success && <p className=' text-green-600 my-4'>{success}</p>}
      </div>
     </div>
    

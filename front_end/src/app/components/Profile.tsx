@@ -159,17 +159,17 @@ const ProfileCom = (props: Props) => {
             {success && <p className=' text-green-500'>{success}</p>}
       </form> 
       {user?.role === "admin" && (
-        <div className=' w-2/3'>
+        <div className=' md:w-2/3 w-full'>
         <p className=' text-4xl my-2 text-center'>Admin panel</p>
         <p className=' text-center my-2 text-lg'>Manage clients</p>
 
 
-        <div className=' flex flex-col w-ful shadow my-8'>
+        <div className=' flex flex-col w-full shadow my-8'>
          {users.map((item)=> (
-            <div key={item._id} className=' flex items-center justify-between py-4 gap-4 px-6 border-t border-gray-200'>
+            <div key={item._id} className=' flex items-center justify-between py-4 sm:gap-4 gap-2 sm:px-6 px-2 border-t border-gray-200'>
               <Image src={item.photourl} alt='profile' width={40} height={40} className='rounded-2xl h-10 w-10 border object-cover border-slate-900' />
               <p>{item.username}</p>
-              <p>{item.email}</p>
+              <p className=' hidden sm:block'>{item.email}</p>
               <select 
                  name="role"  
                  value={item.role} 

@@ -91,13 +91,13 @@ function Shopcom({}: Props) {
       <div className='relative'>
         <Image src={shop} alt='shop' />
         <div className='absolute flex justify-center items-center inset-0 flex-col gap-2'>
-          <h1 className='text-4xl'>Shop Page</h1>
+          <h1 className='sm:text-4xl text-2xl'>Shop Page</h1>
           <p>Let’s design the place you always imagined.</p>
         </div>
       </div>
-      <div className='grid grid-cols-4 gap-8 my-10'>
+      <div className='grid sm:grid-cols-4 grid-cols-2 sm:gap-8 gap-4 my-10'>
         <div>
-          <p className='text-xl font-medium text-gray-600'>Categories</p>
+          <p className='sm:text-xl text-lg font-medium text-gray-600'>Categories</p>
           <select
             name='category'
             value={category}
@@ -110,7 +110,7 @@ function Shopcom({}: Props) {
           </select>
         </div>
         <div>
-          <p className='text-xl font-medium text-gray-600'>Prices</p>
+          <p className='sm:text-xl text-lg font-medium text-gray-600'>Prices</p>
           <select
             name='price'
             value={price}
@@ -125,7 +125,7 @@ function Shopcom({}: Props) {
         </div>
       </div>
       <div>
-        <div className='grid grid-cols-4 gap-8 mb-10'>
+        <div className='grid md:grid-cols-4 sm:grid-cols-2  grid-cols-1 gap-8 mb-10'>
           {filteredProducts.map((item) => (
             <div key={item._id} className='bg-white rounded-lg'>
               <div className='flex justify-center my-2 hover:cursor-pointer' onClick={()=>handelproductClick(item._id)}>
